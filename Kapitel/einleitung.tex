@@ -1,0 +1,45 @@
+\section{Einleitung}
+Anstelle \textit{Ihrer} Einleitung steht hier zunächst eine kurze Einleitung in die Benutzung dieser Formatvorlage.
+
+\subsection{PDF-Erstellung und eigener Inhalt}
+Zur Übersetzung dieser Vorlage müssen Sie biber verwenden, da Biblatex für die Quellenverwaltung verwendet wurde. \\
+Für Ihre eigenen Kapitel können Sie eine neue .tex-Datei im Unterordner Kapitel anlegen und diese in der Hauptdatei referenzieren. In Texmaker bietet es sich an die Vorlage\_ Latex als Masterdatei zu definieren. So kann auch in den Unterdateien die Funktion Schnelles Übersetzen verwendet werden.
+Eigene Quellenverzeichnisse können Sie über einen Verweis in der Präambel einbinden.
+
+
+\subsection{Zitationsbeispiele}
+Zitate können Sie über die Bordmittel simpel einbinden, da diese automatisch an den gewählten Zitationsstil angepasst werden \parencite[5-8]{bergener_wissenschaftliches_2019}.
+Auch Zitate im Fließtext \textcite{bergener_wissenschaftliches_2019} lassen sich abbilden. Die Grundlagen zur neuesten APA-Zitationsweise können Sie im Originalwerk nachlesen \parencite{apa_2019}.
+
+\subsection{Tabellen und Bilder}
+
+\begin{figure}[htbp] 
+  \centering
+     \includegraphics{Bilder/buchmitkopf.png}
+  \caption[Buch mit Kopf]{Buch mit Kopf \parencite[1-2]{bergener_wissenschaftliches_2019}}
+  \label{fig:Bild1}
+\end{figure}
+
+\begin{table}[htbp]
+%Table-Umgebung erstellen
+\centering
+%Tabelle erstellen
+\begin{tabular}{|p{0.3\textwidth}|p{.3\textwidth}|p{.3\textwidth}|}
+\hline
+\textbf{Überschrift} & \textbf{Überschrift} & \textbf{Überschrift} \\ \hline
+Zelltext             & Zelltext             &   Zelltext             \\ \hline
+Zelltext             & Zelltext             & Zelltext             \\ \hline
+\end{tabular}
+\caption[Beschreibung der Tabelle]{Beschreibung der Tabelle \parencite[1-2]{bergener_wissenschaftliches_2019}}
+\label{tab:beispieltabelle}
+\end{table}
+Im Gegensatz zu Word kann in Latex der Text für Tabellenverzeichnis und Tabellenunterschrift unterschiedlich definiert werden. Es bietet sich daher an die Zitation zur Tabelle direkt in der Unterschrift zu tätigen, statt dies im Fließtext nachzuholen. Ein Beispiel für die Verwendung von Tabellen sehen Sie mit Tabelle \ref{tab:beispieltabelle}. Verschiedene Tabellengeneratoren im Internet erleichtern die Verwendung von Tabellen enorm.
+
+
+
+
+
+
+
+
+

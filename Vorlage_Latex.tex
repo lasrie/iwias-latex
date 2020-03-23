@@ -1,0 +1,111 @@
+\documentclass[a4paper,12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[ngerman]{babel}
+\usepackage{graphicx}
+\usepackage{csquotes} 
+\usepackage{enumitem}
+
+% Da biblatex verwendet wird, bietet es sich an im Übersetzungsprozess
+% biber statt bibtex zu verwenden
+\usepackage[style=apa]{biblatex}
+
+\usepackage{hyperref}
+\usepackage{acronym} 
+\renewcommand{\thesection}{\arabic{section}}
+\newcounter{savepage}
+
+\usepackage[left=25mm,right=30mm,top=25mm,bottom=25mm]{geometry}
+\usepackage[onehalfspacing]{setspace}
+
+\addto\captionsngerman{
+  \renewcommand{\contentsname}
+    {Gliederung}
+}
+
+\addbibresource{Quellen.bib}
+
+\begin{document}
+\begin{titlepage}
+{{ \noindent  Universität Leipzig\\
+		Wirtschaftswissenschaftliche Fakultät\\
+		\itshape Betreuender Hochschullehrer\\
+		Betreuender Assistent\\	 \par}
+	\vspace{2cm}
+	{\centering  Thema \\
+	\bfseries \large [Thema der Arbeit]\par}
+	\vspace{2cm}
+	{ \centering  Masterarbeit zur Erlangung des akademischen Grades\\
+	     Master of Science – [Studiengang] 
+		\par}
+
+	\vfill}
+
+	{\noindent Vorgelegt von: \textit{Name, Vorname } \\
+	 Matrikelnummer: \textit{XXXXXX} \\
+	 Email-Adresse: \textit{adresse@mail.de} \\
+	 Telefonnummer: \textit{XXXXXXXXXXXX} \\
+	 Anschrift:  {Straße Hausnummer\\
+						\hspace*{2.15cm} Postleitzahl Ort } \\ } 
+		
+		{\noindent  Leipzig, den Abgabedatum\par}
+\end{titlepage}
+
+\pagenumbering{Roman}
+
+%Inhaltsverzeichnis
+\addcontentsline{toc}{section}{Gliederung}
+\tableofcontents
+\newpage
+
+%Abbildungsverzeichnis, bei Bedarf
+\addcontentsline{toc}{section}{Abbildungsverzeichnis}
+\listoffigures
+\newpage
+
+%Abkürzungsverzeichnis, bei Beadarf
+\addcontentsline{toc}{section}{Abkürzungsverzeichnis}
+{\noindent\Large\bfseries Abkürzungsverzeichnis}
+\begin{acronym}
+	\acro{GDP}{Gross domestic product} 
+\end{acronym} 
+\newpage
+
+%Symbolverzeichnis, bei Bedarf
+%\addcontentsline{toc}{section}{Symbolverzeichnis}
+%{\noindent\Large\bfseries Symbolverzeichnis}
+%\newpage
+
+%Tabellenverzeichnis, bei Bedarf
+\addcontentsline{toc}{section}{Tabellenverzeichnis}
+\listoftables
+\newpage
+\clearpage
+
+%Aktuelle römische Seitenzahl speichern. um später weiterzuführen
+\setcounter{savepage}{\arabic{page}}
+
+\pagenumbering{arabic}
+
+%Include each chapter
+\include{Kapitel/einleitung}
+
+
+% Literaturverzeichnis
+\newpage
+\pagenumbering{Roman}
+\setcounter{page}{\thesavepage}
+\addcontentsline{toc}{section}{Literaturverzeichnis}
+{\noindent\Large\bfseries Literaturverzeichnis}
+\singlespacing
+
+\printbibliography
+\onehalfspacing
+%Anhang, bei Bedarf
+\newpage
+\addcontentsline{toc}{section}{Anhang}
+{\noindent\Large\bfseries Anhang}
+
+
+\end{document}
