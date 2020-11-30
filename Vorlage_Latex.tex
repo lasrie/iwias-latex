@@ -1,87 +1,235 @@
-\documentclass[a4paper,12pt]{article}
+\documentclass[paper=a4,
+fontsize=12pt,
+toc=listof,
+bibliography=totoc,
+numbers=noendperiod %Kein Punkt am Ende von Kapitelzahlen bei Mischung von arabisch und buchstaben im Verzeichnis
+]{scrreprt}
 
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[ngerman]{babel}
+
+\usepackage{acronym}
+
+\usepackage{helvet}
+\usepackage{txfonts}
+
+
+
 \usepackage{graphicx}
 \usepackage{csquotes} 
-\usepackage{enumitem}
+
+\usepackage{pdfpages}
+
+\usepackage{paralist}
+\usepackage{hhline}
+\usepackage{colortbl}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{multirow}
+
+
+
+\usepackage[headsepline]{scrlayer-scrpage}
+
+%Schriftgröße der Fußnote auf 10pt, Fett und Trennung per Doppelpunkt, Abstand zu Grafik 5pt
+\usepackage[margin=0pt,font={footnotesize, bf},labelfont=bf, labelsep=colon, skip=3pt]{caption}
+
+%Abstand unterhalb Fließumgebungen 3pt
+\setlength{\intextsep}{3pt}
+%
+%\makeatletter
+%\renewcommand\normalsize{\@setfontsize\normalsize{12}{12}}
+%\renewcommand\large{\@setfontsize\large{14}{16.8}}
+%\renewcommand\LARGE{\@setfontsize\footnotesize{10}{11.2}}
+%\renewcommand\huge{\@setfontsize\small{10}{11.2}}
+%\makeatother
+
+%Durch ausgewählte Schriftgröße is baselineskip auf 18pt
+%Der aktuellen Word-Vorlage entsprechend sind die Abstände Vor/Nach Überschriftena auf vor 6pt, nach 12pt
+
+\RedeclareSectionCommand[
+  %runin=false,
+  afterindent=false,
+  beforeskip=0.33\baselineskip,
+  afterskip=0.66\baselineskip,
+  ]{chapter}
+\RedeclareSectionCommand[
+  %runin=false,
+%  style=
+  afterindent=false,
+  beforeskip=0.33\baselineskip,
+  afterskip=0.66\baselineskip
+  ]{section}
+\RedeclareSectionCommand[
+  %runin=false,
+  afterindent=false,
+  beforeskip=0.33\baselineskip,
+  afterskip=0.66\baselineskip
+  ]{subsection}
+\RedeclareSectionCommand[
+  %runin=false,
+  afterindent=false,
+    beforeskip=0.33\baselineskip,
+  afterskip=0.66\baselineskip
+  ]{subsubsection}
+\RedeclareSectionCommand[
+  runin=true,
+  %afterindent=false,
+  beforeskip=.15\baselineskip,
+  afterskip=.15\baselineskip]{paragraph}
+\RedeclareSectionCommand[
+  runin=true,
+  %afterindent=false,
+  beforeskip=.15\baselineskip,
+  afterskip=.15\baselineskip]{subparagraph}
+
+
+%Durch Setzen der Setzen der 	Standardschriftgröße auf 12pt gelten die folgenden Schriftgrößen der Abstufungen:
+%\tiny	6pt
+%\scriptsize	8pt
+%\footnotesize	10pt
+%\small	11pt
+%\normalsize	12pt
+%\large	14pt
+%\Large	17pt
+%\LARGE	20pt
+%\huge	25pt
+%\Huge		25pt
+
+\parindent=0pt
+
+\setkomafont{chapter}{\large}
+\setkomafont{section}{\normalsize}
+\setkomafont{subsection}{\normalsize}
+
+\setlength{\headheight}{1.5\baselineskip}
+\pagestyle{scrheadings}
+\clearscrheadfoot
+\ihead{\headmark} %Aktuellen Kolumnennamen Kopfzeile links
+\automark{chapter} %Definition, dass nur Kapitelname in Kopfzeile soll
+\ohead{\pagemark}
+\renewcommand{\chapterpagestyle}{scrheadings}
+
+
+
+\newcolumntype{Y}{>{\centering\arraybackslash}X}
 
 % Da biblatex verwendet wird, bietet es sich an im Übersetzungsprozess
-% biber statt bibtex zu verwenden
-\usepackage[style=apa]{biblatex}
+% biber zu verwenden
+\usepackage[style=authoryear, backend=biber, bibencoding=utf8, maxbibnames=99]{biblatex}
+\DeclareDelimFormat{finalnamedelim}{\addspace\&\addspace}
+\DefineBibliographyStrings{ngerman}{andothers={et\addabbrvspace al\adddot}}
 
-\usepackage{hyperref}
-\usepackage{acronym} 
-\renewcommand{\thesection}{\arabic{section}}
+
+
+
+
+\usepackage[left=30mm,right=25mm,top=25mm,bottom=15mm, headsep=5mm]{geometry}
+\usepackage[onehalfspacing]{setspace}
+
+
+%Hidelinks damit keine roten Kästen in PDF sind, Breaklinks für automatischen Umbruch von links, insb. im Literaturverzeichnis
+\usepackage[hidelinks , breaklinks= true]{hyperref}
+
+
 \newcounter{savepage}
 
-\usepackage[left=25mm,right=30mm,top=25mm,bottom=25mm]{geometry}
-\usepackage[onehalfspacing]{setspace}
+
+
 
 \addto\captionsngerman{
   \renewcommand{\contentsname}
     {Gliederung}
 }
 
-\addbibresource{Quellen.bib}
+\addbibresource{Quellen/Quellen.bib}
 
 \begin{document}
 \begin{titlepage}
-{{ \noindent  Universität Leipzig\\
+{{ \noindent  Universität Leipzig \\
 		Wirtschaftswissenschaftliche Fakultät\\
-		\itshape Betreuender Hochschullehrer\\
-		Betreuender Assistent\\	 \par}
+		\itshape Prof. Dr. Rainer Alt\\
+		Finn Trygve Jessen\\	 \par}
 	\vspace{2cm}
 	{\centering  Thema \\
-	\bfseries \large [Thema der Arbeit]\par}
+	\bfseries \large Marktüberblick über bestehende Ansätze und Entwicklung von Anforderungen für einen DLT-Datenmarktplatz\par}
 	\vspace{2cm}
 	{ \centering  Masterarbeit zur Erlangung des akademischen Grades\\
-	     Master of Science – [Studiengang] 
+	     Master of Science – Wirtschaftsinformatik
 		\par}
 
 	\vfill}
 
-	{\noindent Vorgelegt von: \textit{Name, Vorname } \\
-	 Matrikelnummer: \textit{XXXXXX} \\
-	 Email-Adresse: \textit{adresse@mail.de} \\
-	 Telefonnummer: \textit{XXXXXXXXXXXX} \\
-	 Anschrift:  {Straße Hausnummer\\
-						\hspace*{2.15cm} Postleitzahl Ort } \\ } 
+	{\noindent Vorgelegt von: \textit{Platz,  Halter } \\
+	 Matrikelnummer: \textit{XXXXXXX} \\
+	 E-Mail-Adresse: \textit{lXXXX@XXXX.de} \\
+	 Telefonnummer: \textit{XXXXXX} \\
+	 Anschrift:  {XXXXXXX X\\
+						\hspace*{1.75cm} 04161 Leipzig} \\ } 
 		
 		{\noindent  Leipzig, den Abgabedatum\par}
 \end{titlepage}
 
 \pagenumbering{Roman}
 
+%Abstract
+\include{Extras/abstract}
+
 %Inhaltsverzeichnis
-\addcontentsline{toc}{section}{Gliederung}
+\addcontentsline{toc}{chapter}{Gliederung}
 \tableofcontents
 \newpage
 
 %Abbildungsverzeichnis, bei Bedarf
-\addcontentsline{toc}{section}{Abbildungsverzeichnis}
+%\addcontentsline{toc}{chapter}{Abbildungsverzeichnis}
 \listoffigures
 \newpage
 
-%Abkürzungsverzeichnis, bei Beadarf
-\addcontentsline{toc}{section}{Abkürzungsverzeichnis}
-{\noindent\Large\bfseries Abkürzungsverzeichnis}
-\begin{acronym}
-	\acro{GDP}{Gross domestic product} 
-\end{acronym} 
-\newpage
 
+
+
+   
 %Symbolverzeichnis, bei Bedarf
 %\addcontentsline{toc}{section}{Symbolverzeichnis}
 %{\noindent\Large\bfseries Symbolverzeichnis}
 %\newpage
 
 %Tabellenverzeichnis, bei Bedarf
-\addcontentsline{toc}{section}{Tabellenverzeichnis}
+%\addcontentsline{toc}{chapter}{Tabellenverzeichnis}
 \listoftables
 \newpage
 \clearpage
+
+%Abkürzungsverzeichnis, bei Beadar
+\addchap{Abkürzungsverzeichnis}
+\begin{acronym}[Abkürzungen] %Wort in eckigen Klammern bezieht sich auf längste Abkürzung und dient dem Abstand zwischen Abkürzungen und langem Wort
+\acro{api}[API]{Application Programming Interface}
+\acro{abi}[ABI]{Application Programming Interface}
+\acro{bpmn}[BPMN]{Business Process Model and Notation}
+\acro{btc}[BTC]{Bitcoin (Tokenwährung)}
+\acro{dag}[DAG]{Directed Acyclic Graph}
+\acro{dlt}[DLT]{Distributed Ledger Technology}
+\acro{eip}[EIP]{Ethereum Improvement Proposal}
+\acro{erc}[ERC]{Ethereum Request for Comments}
+\acro{eth}[ETH]{Ethereum (Tokenwährung)}
+\acro{ico}[ICO]{Initial Coin Offering}
+\acro{iin}[IIN]{Interbank Information Network}
+\acro{iot}[IoT]{Internet of Things}
+\acro{mpc}[MPC]{Multi-Party Computation}
+\acro{msp}[MSP]{Membership Service Provider}
+\acro{osn}[OSN]{Ordering Service Node}
+\acro{tak}[TAK]{Transaktionskosten}
+\acro{p2pkh}[P2PKH]{Pay-to-Public-Key-Hash}
+\acro{p2sh}[P2SH]{Pay-to-Script-Hash}
+\acro{s2des}[S2DES]{Smart Sensor-based Digital Ecosystem Services (Forschungsprojekt)}
+\acro{sgx}[SGX]{Software Guard Extensions}
+\acro{soc}[SoC]{System-on-a-Chip}
+\acro{uc}[UC]{Use Case}
+\acro{uml}[UML]{Unified Modelling Language}
+\end{acronym}
+
+\newpage
 
 %Aktuelle römische Seitenzahl speichern. um später weiterzuführen
 \setcounter{savepage}{\arabic{page}}
@@ -91,21 +239,27 @@
 %Include each chapter
 \include{Kapitel/einleitung}
 
-
-% Literaturverzeichnis
 \newpage
 \pagenumbering{Roman}
 \setcounter{page}{\thesavepage}
-\addcontentsline{toc}{section}{Literaturverzeichnis}
-{\noindent\Large\bfseries Literaturverzeichnis}
-\singlespacing
-
-\printbibliography
-\onehalfspacing
 %Anhang, bei Bedarf
-\newpage
-\addcontentsline{toc}{section}{Anhang}
-{\noindent\Large\bfseries Anhang}
+%\newpage
+\appendix
+\renewcommand*\chapterformat{Anhang \thechapter:\enskip}
+%\include{lit-anhang}
+%\include{anf-anhang}
+%\include{arch-anhang}
 
+\clearpage
+% Literaturverzeichnis
+\singlespacing
+\printbibliography[title=Literaturverzeichnis]
+\onehalfspacing
+
+\newpage
+\clearpage
+
+
+\include{Extras/ehrenerklaerung}
 
 \end{document}
